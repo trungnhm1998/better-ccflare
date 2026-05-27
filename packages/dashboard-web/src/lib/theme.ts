@@ -28,14 +28,19 @@ const VALID_THEMES = new Set<Theme>(THEME_VALUES);
 
 /** Read a stored/unknown value into a valid Theme, defaulting to "system". */
 export function normalizeTheme(value: string | null): Theme {
-	return value && VALID_THEMES.has(value as Theme) ? (value as Theme) : "system";
+	return value && VALID_THEMES.has(value as Theme)
+		? (value as Theme)
+		: "system";
 }
 
 /**
  * Resolve a theme to the list of classes to apply on <html>.
  * Dark Catppuccin flavors include "dark" so Tailwind `dark:` utilities stay active.
  */
-export function resolveThemeClasses(theme: Theme, prefersDark: boolean): string[] {
+export function resolveThemeClasses(
+	theme: Theme,
+	prefersDark: boolean,
+): string[] {
 	switch (theme) {
 		case "system":
 			return [prefersDark ? "dark" : "light"];
