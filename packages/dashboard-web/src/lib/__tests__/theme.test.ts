@@ -51,6 +51,7 @@ describe("normalizeTheme", () => {
 	it("falls back to system for unknown or null", () => {
 		expect(normalizeTheme("bogus")).toBe("system");
 		expect(normalizeTheme(null)).toBe("system");
+		expect(normalizeTheme("")).toBe("system");
 	});
 });
 
