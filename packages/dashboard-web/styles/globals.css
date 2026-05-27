@@ -51,6 +51,102 @@
 	--cf-orange: #f38020;
 }
 
+/* Catppuccin Latte (light flavor — intentionally no .dark companion) */
+.catppuccin-latte {
+	--background: #eff1f5;
+	--foreground: #4c4f69;
+	--card: #e6e9ef;
+	--card-foreground: #4c4f69;
+	--popover: #e6e9ef;
+	--popover-foreground: #4c4f69;
+	--primary: #fe640b;
+	--primary-foreground: #dce0e8;
+	--secondary: #ccd0da;
+	--secondary-foreground: #4c4f69;
+	--muted: #ccd0da;
+	--muted-foreground: #6c6f85;
+	--accent: #fe640b;
+	--accent-foreground: #dce0e8;
+	--destructive: #d20f39;
+	--destructive-foreground: #dce0e8;
+	--border: #bcc0cc;
+	--input: #ccd0da;
+	--ring: #fe640b;
+	--cf-orange: #fe640b;
+}
+
+/* Catppuccin Frappé (dark flavor — applied with .dark) */
+.catppuccin-frappe {
+	--background: #303446;
+	--foreground: #c6d0f5;
+	--card: #292c3c;
+	--card-foreground: #c6d0f5;
+	--popover: #292c3c;
+	--popover-foreground: #c6d0f5;
+	--primary: #ef9f76;
+	--primary-foreground: #232634;
+	--secondary: #414559;
+	--secondary-foreground: #c6d0f5;
+	--muted: #414559;
+	--muted-foreground: #a5adce;
+	--accent: #ef9f76;
+	--accent-foreground: #232634;
+	--destructive: #e78284;
+	--destructive-foreground: #232634;
+	--border: #51576d;
+	--input: #414559;
+	--ring: #ef9f76;
+	--cf-orange: #ef9f76;
+}
+
+/* Catppuccin Macchiato (dark flavor — applied with .dark) */
+.catppuccin-macchiato {
+	--background: #24273a;
+	--foreground: #cad3f5;
+	--card: #1e2030;
+	--card-foreground: #cad3f5;
+	--popover: #1e2030;
+	--popover-foreground: #cad3f5;
+	--primary: #f5a97f;
+	--primary-foreground: #181926;
+	--secondary: #363a4f;
+	--secondary-foreground: #cad3f5;
+	--muted: #363a4f;
+	--muted-foreground: #a5adcb;
+	--accent: #f5a97f;
+	--accent-foreground: #181926;
+	--destructive: #ed8796;
+	--destructive-foreground: #181926;
+	--border: #494d64;
+	--input: #363a4f;
+	--ring: #f5a97f;
+	--cf-orange: #f5a97f;
+}
+
+/* Catppuccin Mocha (dark flavor — applied with .dark) */
+.catppuccin-mocha {
+	--background: #1e1e2e;
+	--foreground: #cdd6f4;
+	--card: #181825;
+	--card-foreground: #cdd6f4;
+	--popover: #181825;
+	--popover-foreground: #cdd6f4;
+	--primary: #fab387;
+	--primary-foreground: #11111b;
+	--secondary: #313244;
+	--secondary-foreground: #cdd6f4;
+	--muted: #313244;
+	--muted-foreground: #a6adc8;
+	--accent: #fab387;
+	--accent-foreground: #11111b;
+	--destructive: #f38ba8;
+	--destructive-foreground: #11111b;
+	--border: #45475a;
+	--input: #313244;
+	--ring: #fab387;
+	--cf-orange: #fab387;
+}
+
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
