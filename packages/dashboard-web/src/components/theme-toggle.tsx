@@ -1,10 +1,12 @@
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "../contexts/theme-context";
+import { CATPPUCCIN_FLAVORS } from "../lib/theme";
 import { Button } from "./ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
@@ -21,6 +23,10 @@ export function ThemeToggle() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
+				<DropdownMenuItem onClick={() => setTheme("system")}>
+					<Monitor className="mr-2 h-4 w-4" />
+					<span>System</span>
+				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme("light")}>
 					<Sun className="mr-2 h-4 w-4" />
 					<span>Light</span>
@@ -29,10 +35,19 @@ export function ThemeToggle() {
 					<Moon className="mr-2 h-4 w-4" />
 					<span>Dark</span>
 				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("system")}>
-					<Monitor className="mr-2 h-4 w-4" />
-					<span>System</span>
-				</DropdownMenuItem>
+				<DropdownMenuSeparator />
+				{CATPPUCCIN_FLAVORS.map((flavor) => (
+					<DropdownMenuItem
+						key={flavor.theme}
+						onClick={() => setTheme(flavor.theme)}
+					>
+						<span
+							className="mr-2 h-4 w-4 rounded-full border border-border"
+							style={{ backgroundColor: flavor.swatch }}
+						/>
+						<span>{flavor.label}</span>
+					</DropdownMenuItem>
+				))}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
