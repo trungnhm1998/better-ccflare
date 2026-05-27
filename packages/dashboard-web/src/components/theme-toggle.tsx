@@ -50,9 +50,7 @@ export function ThemeToggle() {
 							style={{ backgroundColor: flavor.swatch }}
 						/>
 						<span>{flavor.label}</span>
-						{theme === flavor.theme && (
-							<Check className="ml-auto h-4 w-4" />
-						)}
+						{theme === flavor.theme && <Check className="ml-auto h-4 w-4" />}
 					</DropdownMenuItem>
 				))}
 			</DropdownMenuContent>
