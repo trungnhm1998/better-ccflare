@@ -1,13 +1,20 @@
-export type Theme =
-	| "system"
-	| "light"
-	| "dark"
-	| "catppuccin-latte"
-	| "catppuccin-frappe"
-	| "catppuccin-macchiato"
-	| "catppuccin-mocha";
+const THEME_VALUES = [
+	"system",
+	"light",
+	"dark",
+	"catppuccin-latte",
+	"catppuccin-frappe",
+	"catppuccin-macchiato",
+	"catppuccin-mocha",
+] as const;
 
-/** Every theme class this app may write on <html>; used for clean removal. */
+export type Theme = (typeof THEME_VALUES)[number];
+
+/**
+ * Every theme class this app may write on <html>; used for clean removal.
+ * "system" is excluded because it is never applied as a CSS class — it is
+ * resolved to "light" or "dark" at runtime based on OS preference.
+ */
 export const ALL_THEME_CLASSES = [
 	"light",
 	"dark",
@@ -17,15 +24,7 @@ export const ALL_THEME_CLASSES = [
 	"catppuccin-mocha",
 ] as const;
 
-const VALID_THEMES = new Set<Theme>([
-	"system",
-	"light",
-	"dark",
-	"catppuccin-latte",
-	"catppuccin-frappe",
-	"catppuccin-macchiato",
-	"catppuccin-mocha",
-]);
+const VALID_THEMES = new Set<Theme>(THEME_VALUES);
 
 /** Read a stored/unknown value into a valid Theme, defaulting to "system". */
 export function normalizeTheme(value: string | null): Theme {
@@ -52,11 +51,15 @@ export function resolveThemeClasses(theme: Theme, prefersDark: boolean): string[
 			return ["dark", "catppuccin-macchiato"];
 		case "catppuccin-mocha":
 			return ["dark", "catppuccin-mocha"];
+		default: {
+			const _exhaustive: never = theme;
+			return _exhaustive;
+		}
 	}
 }
 
 /** Flavor metadata for the picker UI. Swatch = each flavor's Peach accent. */
-export const CATPPUCCIN_FLAVORS: {
+export const CATPPUCCIN_FLAVORS: readonly {
 	theme: Theme;
 	label: string;
 	swatch: string;
