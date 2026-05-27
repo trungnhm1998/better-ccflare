@@ -16,9 +16,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 function applyTheme(theme: Theme) {
 	const root = window.document.documentElement;
-	const prefersDark = window.matchMedia(
-		"(prefers-color-scheme: dark)",
-	).matches;
+	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	root.classList.remove(...ALL_THEME_CLASSES);
 	root.classList.add(...resolveThemeClasses(theme, prefersDark));
 }
