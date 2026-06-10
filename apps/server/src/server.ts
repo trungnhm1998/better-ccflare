@@ -1048,11 +1048,17 @@ export default async function startServer(options?: {
 						},
 					}
 				: {}),
-			async fetch(req: Request) {
+			async fetch(req: Request, server: ReturnType<typeof serve>) {
 				// Scanner bots send Host-less HTTP/1.0 requests, leaving req.url
 				// as a bare path that new URL() rejects — answer 400, not a 500
 				const url = parseRequestUrl(req.url);
 				if (!url) {
+					// Log the peer address so an infected LAN device / scanner can
+					// be identified — legitimate clients never produce a bad URL
+					const peer = server.requestIP(req);
+					log.warn(
+						`Rejected malformed request URL from ${peer?.address ?? "unknown"}: ${req.method} ${req.url}`,
+					);
 					return new Response(
 						JSON.stringify({
 							type: "error",
