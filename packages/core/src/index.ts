@@ -83,7 +83,7 @@ export {
 	type SupportedWindow,
 } from "./throttle-utils";
 export { TtlCache } from "./ttl-cache";
-export { levenshteinDistance } from "./utils";
+export { levenshteinDistance, parseRequestUrl } from "./utils";
 export {
 	patterns,
 	sanitizers,
