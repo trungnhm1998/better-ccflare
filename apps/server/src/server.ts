@@ -8,6 +8,7 @@ import {
 	HTTP_STATUS,
 	initializeNanoGPTPricingIfAccountsExist,
 	NETWORK,
+	parseRequestUrl,
 	registerCleanup,
 	registerDisposable,
 	setPricingLogger,
@@ -1066,7 +1067,24 @@ export default async function startServer(options?: {
 					}
 				: {}),
 			async fetch(req: Request) {
-				const url = new URL(req.url);
+				// Scanner bots send Host-less HTTP/1.0 requests, leaving req.url
+				// as a bare path that new URL() rejects — answer 400, not a 500
+				const url = parseRequestUrl(req.url);
+				if (!url) {
+					return new Response(
+						JSON.stringify({
+							type: "error",
+							error: {
+								type: "invalid_request_error",
+								message: "Malformed request URL",
+							},
+						}),
+						{
+							status: HTTP_STATUS.BAD_REQUEST,
+							headers: { "Content-Type": "application/json" },
+						},
+					);
+				}
 
 				// Try API routes first
 				const apiResponse = await apiRouter.handleRequest(url, req);
