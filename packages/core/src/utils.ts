@@ -8,6 +8,25 @@
  * @param str2 Second string to compare
  * @returns The Levenshtein distance between the two strings
  */
+/**
+ * Safely parse an incoming request URL.
+ *
+ * Bun's `req.url` is normally absolute, but when a client omits the Host
+ * header (e.g. HTTP/1.0 scanner bots), Bun exposes the bare request path,
+ * which `new URL()` rejects. Returns null instead of throwing so callers
+ * can reply with 400 Bad Request rather than an unhandled 500.
+ *
+ * @param rawUrl The raw request URL string (e.g. from `req.url`)
+ * @returns The parsed URL, or null if it is not a valid absolute URL
+ */
+export function parseRequestUrl(rawUrl: string): URL | null {
+	try {
+		return new URL(rawUrl);
+	} catch {
+		return null;
+	}
+}
+
 export function levenshteinDistance(str1: string, str2: string): number {
 	const matrix = Array(str2.length + 1)
 		.fill(null)
